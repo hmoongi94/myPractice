@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+  *{
+    margin:0;
+    padding:0;
+  }
+
+  input[id="icon"]{
+    display: none;
+  }
+  
+  input[id="icon"] + label{
+    display: block;
+    width: 60px;
+    height: 40px;
+    cursor:pointer;
+    position: relative;
+  }
+
+  input[id="icon"] + label > span{
+    display: block;
+    height: 5px;
+    width: 100%;
+    border-radius: 30px;
+    background: black;
+    position: absolute;
+  }
+
+  input[id="icon"] + label > span:nth-child(1){
+    top:0;
+  }
+
+  input[id="icon"] + label > span:nth-child(2){
+    top:50%; 
+    transform:translateY(-50%)
+  }
+
+  input[id="icon"] + label > span:nth-child(3){
+    bottom:0;
+  }
+
+
+  </style>
+</head>
+<body>
+  <input type="checkbox" id = "icon">
+  <label for = "icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+  
+</body>
+</html>
