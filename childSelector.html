@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>형제 자손 선택자에서 >, + 차이</title>
+  <style>
+    div > p{
+      color: red
+    }
+
+    div + p {
+      color: blue
+    }
+
+  </style>
+</head>
+<body>
+  <div>
+    <p>이것은 첫 번째 문단입니다.
+      <p>첫 번째 문단의 첫 번째 문단입니다.</p>
+      <p>첫 번째 문단의 두 번째 문단입니다.</p>
+    </p>
+      
+    <p>이것은 두 번째 문단입니다.</p>
+    <p>이것은 세 번째 문단입니다.</p>
+  </div>
+
+  <p>div와 형제 문단입니다.</p>
+</body>
+</html>
