@@ -287,20 +287,23 @@
         // console.log(inputValue)       
 
       // 중복선택 시, 색 초기화
-          for(i=0; i<li.length; i++){
-              li[i].style.background = "grey"
-            }
-        event.currentTarget.style.backgroundColor = "pink"
+        //   for(i=0; i<li.length; i++){
+        //       li[i].style.background = "grey"
+        //     }
+        // event.currentTarget.style.backgroundColor = "pink"
 
 
       // liValue 중복선택 값 합하기 
-
-        // for(i=0; i<li.length; i++){
-        //   if(li[i].style.bakcgroundColor==="pink"){
-        //     liValue += parseInt(li[i].children[1].textContent)
-        //   }
-        // }
-
+      
+      event.currentTarget.style.backgroundColor = "pink"
+      
+          for(i=0; i<li.length; i++){
+             if(li[i].style.bakcgroundColor==="pink"){
+                liValue += parseInt(li[i].children[1].textContent)
+                }
+                
+          }
+        
   
 
         console.log(liValue)
