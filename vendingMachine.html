@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VendingMachine</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+
+  <script>
+    // root태그
+  let root = document.getElementById("root")
+  root.style.display = "flex"
+  root.style.width = "100vw"
+  root.style.height = "100vh"
+  root.style.flexWrap = "nowrap"
+  // root.stlye.overflow = "scroll"
+  console.dir(root)
+
+  let goods = {
+    goods1: ["3000원", "😗"],
+    goods2: ["1500원", "🤪"],
+    goods3: ["900원", "🤓"],
+    goods4: ["1900원", "😋"],
+    goods5: ["300원","🧐"],
+    goods6: ["700원", "😑"],
+    goods7: ["1200원","🥱"],
+    goods8: ["2200원","😣"],
+    goods9: ["1000원","🥴"],
+    goods10: ["1800원", "🤢"],
+    goods11: ["2300원","🤠"],
+    goods12: ["1100원","🥰"],
+    goods13: ["800원","😌"],
+    goods14: ["2000원","👽"],
+    goods15: ["3100원","💀"],
+    goods16: ["1900원","🤡"],
+    goods17: ["1500원","🙄"],
+    goods18: ["100원","🤖"],
+    goods19: ["1600원","🐠"],
+    goods20: ["900원","🍗"]
+  }
+
+  // console.log(goods.goods1[0])
+  // console.log(goods.goods1[1])
+
+  // createElement태그
+  let ul = document.getElementsByTagName("ul")
+  let li = document.getElementsByTagName("li")
+  let div = document.getElementsByTagName("div")
+  let input = document.getElementsByTagName("input")
+  let button = document.getElementsByTagName("button")
+  let pTag = document.getElementsByTagName("p")
+  let h1Tag = document.getElementsByTagName("h1")
+  // console.dir(li)
+
+
+  // Ul태그
+  makeUl = document.createElement("ul")
+  root.appendChild(makeUl)
+  ul[0].style.display = "flex"
+  ul[0].style.width = "58vw"
+  ul[0].style.height = "86vh"
+  ul[0].style.flexWrap = "wrap"
+  ul[0].style.justifyContent = "space-evenly"
+  ul[0].style.marginLeft ="5vw"
+  ul[0].style.marginTop ="7vh"
+  
+
+  // li태그 
+  for(i=0; i<20; i++){
+    let makeLi = document.createElement("li")
+    ul[0].appendChild(makeLi)
+    li[i].style.listStyleType = "none"
+    li[i].style.width = "16vh"
+    li[i].style.height = "16vh"
+    li[i].style.backgroundColor = "grey"
+    li[i].style.display = "flex"
+    li[i].style.flexShrink = "0"
+    li[i].style.alignItems = "center"
+    li[i].style.flexDirection = "column"
+  }
+  
+  // li태그 및 p태그
+  for (let j = 0; j <3; j++) {
+      for(let i = 0; i < 20; i++) {
+        let makeP = document.createElement('p');
+        li[i].appendChild(makeP)
+      }
+    }
+
+  // p태그 안에 객체 goods 키값으로 접근해 value값 할당하기
+
+    // const keys = Object.keys(goods)
+    // const value = [];
+    // for(let i=0; i<keys.length; i++){
+    //   const key = keys[i]
+    // }
+
+    const keys = Object.keys(goods)
+  for(i=0; i<keys.length; i++){
+    pTag[i*3].textContent = Object.values(goods)[i][1]
+    pTag[i*3].style.width = "12vh"
+    pTag[i*3].style.height = "8vh"
+    pTag[i*3].style.display = "flex"
+    pTag[i*3].style.alignItems = "center"
+    pTag[i*3].style.justifyContent = "center"
+    pTag[i*3].style.fontSize = "6vh"
+    pTag[i*3+1].textContent = Object.values(goods)[i][0]
+    pTag[i*3+2].textContent = i+1
+    pTag[i*3+2].style.marginTop = "2vw"
+    pTag[i*3+2].style.marginRight = "8vw"
+    }
+
+
+    // ul[0].addEventListener("click",function(eventTarget){
+    //   console.dir(eventTarget)
+    //     console.log(eventTarget.target.children[1].textContent)         
+    // })
+    
+    // for(i=0; i<li.length; i++){
+    //   li[i].addEventListener("click",function(eventTarget){
+    //     // console.dir(event.currentTarget)             
+    //     const liValue = parseInt(event.currentTarget.children[1].textContent)
+    //     const inputValue = input[0].value
+        
+    //     if(event.currentTarget.style.backgroundColor === "grey"){
+    //       console.log(liValue)
+    //       console.log(inputValue)
+    //       event.currentTarget.style.backgroundColor = "pink"
+    //       return liValue
+    //     }
+        
+    //     else if(event.currentTarget.style.backgroundColor === "pink"){
+    //       event.currentTarget.style.backgroundColor = "grey"
+    //     }
+    //   })
+    // }
+
+    // console.log(Object.keys(goods)[0])
+    // console.log(Object.values(goods)[0][0])
+
+  
+
+  // 가운데 경계선 Div태그
+  let makeDiv = document.createElement("div")
+  root.appendChild(makeDiv)
+  div[1].style.width="1vw"
+  div[1].style.height="86vh"
+  div[1].style.backgroundColor="#92AC98"
+  div[1].style.marginLeft="2vw"
+  div[1].style.marginTop="7vh"
+
+  // 오른쪽 전체영역 Div태그
+  let makeDiv2 = document.createElement("div")
+  root.appendChild(makeDiv2)
+  div[2].style.width="24vw"
+  div[2].style.height="86vh"
+  div[2].style.display="flex"
+  div[2].style.flexDirection="column"
+  div[2].style.marginLeft="3vw"
+  div[2].style.marginTop="7vh"
+
+  // GreenAcademy 텍스트 Div 태그
+  let makeDiv3 =document.createElement("div")
+  div[2].appendChild(makeDiv3)
+  div[3].style.width="24vw"
+  div[3].style.height="20vh"
+  div[3].style.color="#f66"
+  div[3].style.textAlign= "center"
+  div[3].style.fontFamily="jua"
+  div[3].style.fontSize="5vh"
+  div[3].style.fontStyle="normal"
+  div[3].style.fontWeight="400"
+  div[3].style.lineHeight="normal"
+  div[3].style.marginTop="10vh"
+  div[3].textContent="Green Academy Vending Machine"
+
+
+  // "liEmoji를 뽑았습니다."
+  let makeDiv4 = document.createElement("div")
+  root.appendChild(makeDiv4)
+  div[4].style.width="100vw"
+  div[4].style.height="100vh"
+  div[4].style.display = "flex"
+  div[4].style.flexDirection = "column"
+  div[4].style.justifyContent = "center"
+  div[4].style.alignItems = "center"
+  div[4].style.position = "absolute"
+  div[4].style.zIndex = -1
+  let makeH1 = document.createElement("h1")
+  div[4].appendChild(makeH1)
+
+  // "금액이 부족합니다"
+  let makeDiv5 = document.createElement("div")
+  root.appendChild(makeDiv5)
+  div[5].style.width="100vw"
+  div[5].style.height="100vh"
+  div[5].style.display = "flex"
+  div[5].style.justifyContent = "center"
+  div[5].style.alignItems = "center"
+  div[5].style.position = "absolute"
+  div[5].style.zIndex = -2
+  let makeH2 = document.createElement("h1")
+  div[5].appendChild(makeH2)
+
+  // 잔돈 버튼 눌렀을 때
+  let makeDiv6 = document.createElement("div")
+  root.appendChild(makeDiv6)
+  div[6].style.width="100vw"
+  div[6].style.height="100vh"
+  div[6].style.display = "flex"
+  div[6].style.justifyContent = "center"
+  div[6].style.alignItems = "center"
+  div[6].style.position = "absolute"
+  div[6].style.zIndex = -3
+  let makeH3 = document.createElement("h1")
+  div[6].appendChild(makeH3)
+
+  // Input태그
+  let makeInput = document.createElement("input")
+  div[2].appendChild(makeInput)
+  input[0].type="text"
+  input[0].id = "input-money"
+  input[0].placeholder="금액을 입력하세요"
+  input[0].style.width="24vw"
+  input[0].style.height="6vh"
+  input[0].style.fontSize="20px"
+  input[0].style.borderRadius="10px"
+  input[0].style.background = "#f1f1f1"
+  input[0].style.boxShadow = "2px 4px 4px 0px rgba(0,0,0,0.10)"
+  input[0].style.marginTop = "3.5vh"
+
+  
+  // input[0].addEventListener("click",function(){
+  //   console.dir(input[0])
+  // })
+  
+  
+
+  // Button태그
+  let makeButton = document.createElement("button")
+  div[2].appendChild(makeButton)
+  button[0].id = "goods-choice"
+  button[0].style.width = "28vh"
+  button[0].style.height = "28vh"
+  button[0].style.fontSize = "9vh"
+  button[0].style.color = "white"
+  button[0].style.borderRadius = "163.5px"
+  button[0].style.background = "#f66"
+  button[0].style.boxShadow = "2px 4px 4px 0px rgba(0,0,0,0.10)"
+  button[0].style.textAlign = "center"
+  button[0].style.justifyContent = "center"
+  button[0].style.fontWeight = "400"
+  button[0].style.marginTop = "7.5vh"
+  button[0].style.marginLeft = "3.5vw"
+  button[0].textContent = "뽑기"
+  console.dir(button[0])
+
+  
+  let liValue
+  let liemoji
+  let liChoice
+  let inputValue
+
+
+  // addEventListener 
+  for(i=0; i<li.length; i++){
+    
+    li[i].addEventListener("click",function(eventTarget){
+      // console.dir(event.currentTarget)             
+      liValue = parseInt(event.currentTarget.children[1].textContent)
+      liemoji = event.currentTarget.children[0].textContent
+      liChoice = event.currentTarget
+      
+      if(event.currentTarget.style.backgroundColor === "grey"     
+      ){
+        // console.log(liValue)
+        // console.log(inputValue)       
+
+      // 중복선택 시, 색 초기화
+          for(i=0; i<li.length; i++){
+              li[i].style.background = "grey"
+            }
+        event.currentTarget.style.backgroundColor = "pink"
+
+
+      // liValue 중복선택 값 합하기 
+
+        // for(i=0; i<li.length; i++){
+        //   if(li[i].style.bakcgroundColor==="pink"){
+        //     liValue += parseInt(li[i].children[1].textContent)
+        //   }
+        // }
+
+  
+
+        console.log(liValue)
+        console.log("상품을 선택했습니다.")
+        
+      }
+      
+      // else if(event.currentTarget.style.backgroundColor === "pink"){
+        else{
+          event.currentTarget.style.backgroundColor = "grey"
+          console.log("상품을 취소했습니다.")
+          
+        }
+      })
+    }
+    
+    button[0].addEventListener("click",function(){
+      inputValue = parseInt(input[0].value)
+      if(inputValue>=liValue && liChoice.style.backgroundColor === "pink"){
+        console.log(`${liemoji}뽑았습니다.`)
+        div[4].style.zIndex = 1
+        div[4].style.fontSize = "5vw"     
+        div[4].children[0].textContent = `${liemoji}를 뽑았습니다`
+        div[4].style.backdropFilter = "blur(20.5px)"
+
+        let makeButton2 = document.createElement("button")
+        div[4].appendChild(makeButton2)
+        button[1].style.width = "28vh"
+        button[1].style.height = "28vh"
+        button[1].style.fontSize = "9vh"
+        button[1].style.color = "white"
+        button[1].style.borderRadius = "163.5px"
+        button[1].style.background = "#f66"
+        button[1].style.boxShadow = "2px 4px 4px 0px rgba(0,0,0,0.10)"
+        button[1].style.textAlign = "center"
+        button[1].style.justifyContent = "center"
+        button[1].style.fontWeight = "400"
+        button[1].style.marginTop = "7.5vh"
+        button[1].style.marginLeft = "3.5vw"
+        button[1].textContent = "잔돈"
+      }
+
+      else if(inputValue<liValue && liChoice.style.backgroundColor === "pink"){
+        console.log("금액이 부족합니다.")  
+        div[5].style.zIndex = 1
+        div[5].style.fontSize = "5vw"     
+        div[5].children[0].textContent = `금액이 부족합니다!`
+        div[5].style.backdropFilter = "blur(20.5px)"
+               
+            }
+            else {
+              console.log("상품을 선택해주세요.")
+              return "상품 선택"
+            }
+
+          })
+    
+    div[4].addEventListener("click",function(Target){
+      if(event.target === button[1]){
+        div[6].style.zIndex = 1
+        div[6].style.fontSize = "5vw"
+        div[6].style.backdropFilter = "blur(20.5px)"
+        div[6].children[0].textContent = `${inputValue-liValue}원이  남았습니다.`
+
+        div[6].addEventListener("click",function(){
+          div[4].style.zIndex = -1
+          div[4].children[0].textContent = ""
+          button[1].remove()
+          div[6].style.zIndex = -3
+          div[6].children[0].textContent =""
+
+        })
+      }
+      else{
+      div[4].style.zIndex = -1
+      div[4].children[0].textContent = ""
+      button[1].remove()
+      console.dir(Target)
+      }
+
+    })
+
+    div[5].addEventListener("click",function(eventTarget){
+      event.currentTarget.style.zIndex = -2
+      event.currentTarget.children[0].textContent = ""
+    })
+      
+  
+
+//   for(i=0; i<li.length; i++){
+//   button[0].addEventListener("click",function(){
+    
+//     const inputValue = input[0].value 
+//     console.log(liValue)
+//     if(liValue !== null && inputValue !==null){
+//       console.log("뽑기")
+//     }
+
+//   })
+// }
+  
+
+  
+ 
+    // let goodsPrice = [3000, 1500, 900, 1900, 300,
+    //               700, 1200, 2200, 1000, 1800,
+    //               2300, 1100, 800, 2000, 3100,
+    //               1900, 1500, 100, 1600, 900]
+
+    // let emoji = ["😗","🤪","🤓","😋","🧐","😑","🥱","😣","🥴","🤢","🤠","🥰","😌","👽","💀","🤡","🙄","🤖","🐠","🍗"]
+
+</script>
+
+</body>
+</html>
