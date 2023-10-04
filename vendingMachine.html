@@ -269,15 +269,14 @@
   let liValue
   let liemoji
   let liChoice
-  let inputValue
-
-
+  let inputValue    
+    
   // addEventListener 
   for(i=0; i<li.length; i++){
     
     li[i].addEventListener("click",function(eventTarget){
       // console.dir(event.currentTarget)             
-      liValue = parseInt(event.currentTarget.children[1].textContent)
+      // liValue = parseInt(event.currentTarget.children[1].textContent)
       liemoji = event.currentTarget.children[0].textContent
       liChoice = event.currentTarget
       
@@ -295,15 +294,21 @@
 
       // liValue 중복선택 값 합하기 
       
-      event.currentTarget.style.backgroundColor = "pink"
+      // event.currentTarget.style.backgroundColor = "pink"
       
-          for(i=0; i<li.length; i++){
-             if(li[i].style.bakcgroundColor==="pink"){
-                liValue += parseInt(li[i].children[1].textContent)
-                }
-                
-          }
+      //     for(i=0; i<li.length; i++){
+      //        if(li[i].style.bakcgroundColor==="pink"){
+      //           liValue += parseInt(li[i].children[1].textContent)
+      //           }
+      //     }
         
+      liValue = []
+      count = 0
+      for(i=0; i<li.length; i++){
+        if(li[i].style.backgroundColor===pink){
+          count = count + 1
+        }
+      }
   
 
         console.log(liValue)
