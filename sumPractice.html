@@ -6,6 +6,27 @@
   <title>Document</title>
 </head>
 <body>
-  
+  <ul>
+    <li>100</li>
+    <li>200</li>
+    <li>300</li>
+    <li>400</li>
+  </ul>
+
+  <script>
+    ul = document.getElementsByTagName("ul")
+    li = document.getElementsByTagName("li")
+    console.dir(li)
+
+    for(i=0; i<li.length; i++){
+      li[i].style.width = "100px"
+      li[i].style.height = "100px"
+      li[i].style.backgroundColor = "grey"
+      li[i].style.marginTop = "10px"
+      li[i].style.listStyleType = "none"
+    }
+
+
+  </script>
 </body>
 </html>
