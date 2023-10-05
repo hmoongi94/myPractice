@@ -8,11 +8,37 @@ function callBackBody(body1, body2, movepage, movepagetext){
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+  h1{
+    width:200px;
+    height:200px;
+    background-color: grey;
+  }
+  .fadeout-animate{
+    animation: fadeout-animate 2s forwards;
+  }
+  @keyframes fadeout-animate{
+    from{opacity:1;}
+    to{opacity:1; transform: translateX(100px)}
+  }
+  </style>
 </head>
 <body>
-  <h1>${body1}</h1>
+  <h1 id="animation">${body1}</h1>
   <h2>${body2}</h2>
   <a href="http://localhost:8000/${movepage}">${movepagetext}</a>
+
+  <script>
+  h1 = document.getElementById("animation")
+  h1.addEventListener("click",function(){
+    setTimeout(function(){
+      h1.classList.add("fadeout-animate");
+    },1000)
+    setTimeout(function(){
+      h1.remove()
+    },5000)
+  })
+  </script>
 </body>
 </html>`
 }
