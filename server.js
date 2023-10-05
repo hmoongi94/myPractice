@@ -1,6 +1,6 @@
 const http = require("http");
 
-function htmlBody(body1, body2){
+function callBackBody(body1, body2){
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,16 +16,35 @@ function htmlBody(body1, body2){
 </html>`
 }
 
-function callBackBody(body1,body2,callback){
+function htmlBody(body1,body2,callback){
   return callback(body1,body2)
 }
 
-let makeHtmlBody = callBackBody("안녕하세요","잘가세요",htmlBody)
+// let makeHtmlBody = callBackBody("안녕하세요2","잘가세요",htmlBody)
 // console.log(makeHtmlBody)
 
 const server = http.createServer(function(request,response){
+  if(request.url === "/"){
   response.writeHead(200,{"Content-Type":"text/html"})
-  response.end(makeHtmlBody)
+  let first = htmlBody("안녕하세요1","잘가세요",callBackBody)
+  response.end(first)
+  }
+  if(request.url === "/second"){
+  response.writeHead(200,{"Content-Type":"text/html"})
+  let second = htmlBody("안녕하세요2","잘가세요",callBackBody)
+  response.end(second)
+  }
+  if(request.url ==="/third"){
+  response.writeHead(200,{"Content-Type":"text/html"})
+  let third = htmlBody("안녕하세요3","잘가세요",callBackBody)
+  response.end(third)
+  }
+  
 })
+
+
+
+
+
 
 server.listen(8000)
