@@ -21,9 +21,11 @@ function callBackBody(body1,body2,callback){
 }
 
 let makeHtmlBody = callBackBody("안녕하세요","잘가세요",htmlBody)
-console.log(makeHtmlBody)
+// console.log(makeHtmlBody)
 
-// const server = http.createServer(function(request,response){
-//   response.writeHead(200,{"Content-Type":"text/html"})
-//   response.end()
-// })
+const server = http.createServer(function(request,response){
+  response.writeHead(200,{"Content-Type":"text/html"})
+  response.end(makeHtmlBody)
+})
+
+server.listen(8000)
