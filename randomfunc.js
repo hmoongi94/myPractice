@@ -12,6 +12,9 @@ console.log((Math.random()*(10-1))+1)
 // 1~10까지 정수만 반환
 console.log(Math.floor((Math.random()*10)+1))
 
+console.log(Math.floor((Math.random()*100)+1))
+
+
 // tostring 사용해보기 (mdn)
 function Dog(name){
   this.name = name;
