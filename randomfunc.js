@@ -11,3 +11,14 @@ console.log((Math.random()*(10-1))+1)
 
 // 1~10까지 정수만 반환
 console.log(Math.floor((Math.random()*10)+1))
+
+
+// 
+dotCreate.addEventListener('click', function (event) {
+  let x = Math.floor(Math.random() * event.pageX + 245);
+  let y = Math.floor(Math.random() * event.pageY + 117);
+  let xString = x.toString();
+  let ySting = y.toString();
+  dotCreate.style.left = xString + 'px';
+  dotCreate.style.top = ySting + 'px';
+});
