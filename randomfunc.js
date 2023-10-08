@@ -38,7 +38,7 @@ console.log(str) //"24"
 //   let x = Math.floor(Math.random() * event.pageX + 245);
 //   let y = Math.floor(Math.random() * event.pageY + 117);
 //   let xString = x.toString();
-//   let ySting = y.toString();
+//   let yString = y.toString();
 //   dotCreate.style.left = xString + 'px';
-//   dotCreate.style.top = ySting + 'px';
+//   dotCreate.style.top = yString + 'px';
 // });
