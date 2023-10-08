@@ -12,7 +12,7 @@ console.log((Math.random()*(10-1))+1)
 // 1~10까지 정수만 반환
 console.log(Math.floor((Math.random()*10)+1))
 
-// tostring 사용해보기
+// tostring 사용해보기 (mdn)
 function Dog(name){
   this.name = name;
 }
@@ -24,6 +24,13 @@ Dog.prototype.toString = function dogtostring(){
 
 console.log(dog1.toString())
 // output: Gabby
+
+// mdn 이해x
+var num = 24;
+var str = num.toString();
+
+console.log(num) //24
+console.log(str) //"24"
 
 
 // //랜덤한수 예시
