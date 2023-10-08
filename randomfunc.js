@@ -12,13 +12,26 @@ console.log((Math.random()*(10-1))+1)
 // 1~10까지 정수만 반환
 console.log(Math.floor((Math.random()*10)+1))
 
+// tostring 사용해보기
+function Dog(name){
+  this.name = name;
+}
+const dog1 = new Dog('Gabby');
 
-// 
-dotCreate.addEventListener('click', function (event) {
-  let x = Math.floor(Math.random() * event.pageX + 245);
-  let y = Math.floor(Math.random() * event.pageY + 117);
-  let xString = x.toString();
-  let ySting = y.toString();
-  dotCreate.style.left = xString + 'px';
-  dotCreate.style.top = ySting + 'px';
-});
+Dog.prototype.toString = function dogtostring(){
+  return `${this.name}`;
+}
+
+console.log(dog1.toString())
+// output: Gabby
+
+
+// //랜덤한수 예시
+// dotCreate.addEventListener('click', function (event) {
+//   let x = Math.floor(Math.random() * event.pageX + 245);
+//   let y = Math.floor(Math.random() * event.pageY + 117);
+//   let xString = x.toString();
+//   let ySting = y.toString();
+//   dotCreate.style.left = xString + 'px';
+//   dotCreate.style.top = ySting + 'px';
+// });
