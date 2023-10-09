@@ -80,6 +80,7 @@
           score = score +1
             div[4].children[0].textContent = "점수:" +score  
             p[i].remove()
+            target();
           }
         }
       })
@@ -191,17 +192,13 @@
         h3[1].textContent = "점수:"
         score = 0
 
-        play = setInterval(function(){
-        target();  
-        setTimeout(function(){
-          target();
-        },500)  
+        target()  
         // 10초 이후에 꺼지기
         timer = setTimeout(function(){
           clearInterval(play)
           button[0].textContent = "Play!"
         },120000)
-        },1000)
+        
 
       // 제한시간 2분
       timeCount();
