@@ -20,8 +20,8 @@
       align-items: center;
     }
     #root>div{
-      width:400px;
-      height:400px;
+      width:1000px;
+      height:800px;
       margin: 5px;
       display: flex;
       justify-content: center;
@@ -30,12 +30,7 @@
     #root> div:nth-child(1){
       background-color: darkslateblue;      
     }
-    #root> div:nth-child(2){
-      background-color: darkseagreen;
-    }
-    #root> div:nth-child(3){
-      background-color: darkolivegreen;
-    }
+  
     #root>div>div{
       width:100px;
       height:100px;
@@ -49,16 +44,28 @@
     <div>
       <div></div>
     </div>
-    <div>
-      <div></div>
-    </div>
-    <div>
-      <div></div>
-    </div>
   </div>
 
   <script>
+    root = document.getElementById("root")
+    div = document.getElementsByTagName("div")
+
+    div[2].style.position = "relative"
+
+    let play 
+    let speed = 0
+    console.dir(div[2])
+
+    play = setInterval(function(){
+      if(div[2].style.top>-1+"px"){
+      div[2].style.top = speed + "px"
+      speed++}
+      else if(div[2].style.top<1000+"px"){
+        div[2].style.top = speed + "px"
+      speed--}      
+    },10)
   
+
   </script>
 </body>
 </html>
