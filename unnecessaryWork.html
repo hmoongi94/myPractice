@@ -25,7 +25,7 @@
       margin: 5px;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-end;
     }
     #root> div:nth-child(1){
       background-color: darkslateblue;      
@@ -57,22 +57,14 @@
     let speed = 0
     console.dir(div[2])
 
-    play = setInterval(function(){
-      if(div[2].style.top >= 0 +"px"){
-      div[2].style.top = speed + "px"
-      speed++
-        if(div[2].style.top === 300 + "px"){
-        clearInterval(play)
-      }
-      if(div[2].style.top <= 300 +"px"){
-        div[2].style.top = speed + "px"
-        speed--
-        if(div[2].style.top === -300 + "px"){
-          clearInterval(play)
-        }
-      }
-      }      
-    },60)
+    up = setInterval(function(){
+      
+    },10)
+
+    down = setInterval(function(){
+
+    }
+    ,10)
   
 
   </script>
