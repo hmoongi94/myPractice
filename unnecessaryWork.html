@@ -57,10 +57,10 @@
     console.dir(div[2])
 
     play = setInterval(function(){
-      if(div[2].style.top>-1+"px"){
+      if(div[2].style.top > 0 +"px"){
       div[2].style.top = speed + "px"
       speed++}
-      else if(div[2].style.top<1000+"px"){
+      else if(div[2].style.top > 100+"px"){
         div[2].style.top = speed + "px"
       speed--}      
     },10)
