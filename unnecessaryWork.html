@@ -53,18 +53,29 @@
     div[2].style.position = "relative"
     div[2].style.top = "0px"
 
-    let play 
+    let up
+    let down 
     let speed = 0
     console.dir(div[2])
 
-    up = setInterval(function(){
-      
-    },10)
-
-    down = setInterval(function(){
-
-    }
-    ,10)
+    div[2].addEventListener("click",function(target){
+      if(event.target === div[2]){
+        up = setInterval(function(){
+        div[2].style.top = speed + "px"
+        speed--
+        },10)
+        if(div[2].style.top === -300 + "px"){
+          clearInterval(up)
+          down = setInterval(function(){
+          div[2].style.top = speed + "px"
+          speed++
+         },10)
+          if(div[2].style.top=== 0 + "px"){
+            clearInterval(down)
+          }
+        }
+      }
+    })
   
 
   </script>
