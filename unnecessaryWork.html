@@ -84,6 +84,7 @@
     }
     
     // 좌우 움직이기
+
     window.addEventListener('keydown',moving)
     
     let movingspeed = 0
@@ -95,19 +96,18 @@
         function movingRight(){
           div[2].style.left = movingspeed + "px"
           movingspeed += 3
-          if(key.code !== 'KeyD'){
-            clearInterval(movingright)
+          let clearright = clearInterval(movingright)
+          setTimeout(clearright,100)
           }
         } 
-      }
-      else if(key.code === 'KeyA'){
+      
+      if(key.code === 'KeyA'){
         let movingleft = setInterval(movingLeft,0.01)
         function movingLeft(){
           div[2].style.left = movingspeed + "px"
           movingspeed -= 3
-          if(key.code !== 'KeyA'){
-            clearInterval(movingleft)
-          }
+          let clearleft = clearInterval(movingleft)
+          setTimeout(clearleft,100)
       }
     }}
 
