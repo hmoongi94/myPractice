@@ -32,9 +32,8 @@
     }
   
     #root>div>div{
-      width:100px;
-      height:100px;
-      border-radius: 100px;
+   
+      border-radius: 1000px;
       background-color: darkgoldenrod;
     }
   </style>
@@ -110,6 +109,21 @@
           setTimeout(clearleft,100)
       }
     }}
+
+    // 클릭시 공 커지기 작아지기
+    div[2].style.width = "100px"
+    div[2].style.height = "100px"
+    
+    let ballwidth = parseInt(div[2].style.width)
+    let ballheight = parseInt(div[2].style.height)
+    size = 30
+    
+    div[2].addEventListener("click",function(){
+      ballwidth += size 
+      ballheight += size 
+      div[2].style.width = ballwidth + "px"
+      div[2].style.height = ballheight + "px"
+    })
 
     
    
