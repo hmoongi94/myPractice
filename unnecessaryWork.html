@@ -52,16 +52,18 @@
 
     div[2].style.position = "relative"
     div[2].style.top = "0px"
-
+    
     
     
     // 점프하기
-    let speed = 0
+    window.addEventListener("keydown",bounce)
     console.dir(div[2])
+    
+    let speed = 0
 
     function bounce(key){
-      console.log(key)
-      console.dir(event)
+      // console.log(key)
+      // console.dir(event)
       if(key.code==='Space'){
       let bounceup = setInterval(bounceUp,0.1)
       function bounceUp(){
@@ -81,8 +83,24 @@
       }}
     }
     
-    window.addEventListener("keydown",bounce)
+    // 좌우 움직이기
+    window.addEventListener('keypress',moving)
+    
+    let movingspeed = 10
 
+    function moving(key){
+      console.dir(key)
+      if(key.code === 'KeyD'){
+        let movingright = setInterval(movingRight,0.01)
+        function movingRight(){
+          div[2].style.left = movingspeed + "px"
+          movingspeed += 3
+          if(key.code !== 'keyD'){
+            clearInterval(movingright)
+          }
+        } 
+      }
+    }
 
     
    
