@@ -58,7 +58,7 @@
     let speed = 0
     console.dir(div[2])
 
-    div[2].addEventListener("click",function(target){
+    function bounce(){
       if(event.target === div[2]){
         up = setInterval(function(){
         div[2].style.top = speed + "px";
@@ -75,7 +75,28 @@
           }
         }
       }
-    })
+    }
+
+    div[2].addEventListener("click",bounce)
+
+    // div[2].addEventListener("click",function(target){
+    //   if(event.target === div[2]){
+    //     up = setInterval(function(){
+    //     div[2].style.top = speed + "px";
+    //     speed = speed-1;
+    //     },10)
+    //     if(div[2].style.top < -300 + "px"){
+    //       clearInterval(up)
+    //       down = setInterval(function(){
+    //       div[2].style.top = speed + "px";
+    //       speed = speed + 1;
+    //      },10)
+    //       if(div[2].style.top > 0 + "px"){
+    //         clearInterval(down)
+    //       }
+    //     }
+    //   }
+    // })
   
 
   </script>
