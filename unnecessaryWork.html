@@ -118,7 +118,9 @@
     let ballheight = parseInt(div[2].style.height)
     size = 30
     
-    div[2].addEventListener("click",function(){
+    div[2].addEventListener("click",function(click){
+      console.dir(click)
+      // if(click === )
       ballwidth += size 
       ballheight += size 
       div[2].style.width = ballwidth + "px"
