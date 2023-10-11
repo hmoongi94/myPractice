@@ -84,9 +84,9 @@
     }
     
     // 좌우 움직이기
-    window.addEventListener('keypress',moving)
+    window.addEventListener('keydown',moving)
     
-    let movingspeed = 10
+    let movingspeed = 0
 
     function moving(key){
       console.dir(key)
@@ -95,12 +95,21 @@
         function movingRight(){
           div[2].style.left = movingspeed + "px"
           movingspeed += 3
-          if(key.code !== 'keyD'){
+          if(key.code !== 'KeyD'){
             clearInterval(movingright)
           }
         } 
       }
-    }
+      else if(key.code === 'KeyA'){
+        let movingleft = setInterval(movingLeft,0.01)
+        function movingLeft(){
+          div[2].style.left = movingspeed + "px"
+          movingspeed -= 3
+          if(key.code !== 'KeyA'){
+            clearInterval(movingleft)
+          }
+      }
+    }}
 
     
    
