@@ -54,17 +54,22 @@
     div[2].style.top = "0px"
 
     
+    
+    // 점프하기
     let speed = 0
     console.dir(div[2])
 
-    function bounce(){
-      let bounceup = setInterval(bounceUp,10)
+    function bounce(key){
+      console.log(key)
+      console.dir(event)
+      if(key.code==='Space'){
+      let bounceup = setInterval(bounceUp,0.1)
       function bounceUp(){
         div[2].style.top = speed + "px"
         speed = speed -1
-        if(speed < -50){
+        if(speed < -100){
           clearInterval(bounceup)
-          let bouncedown = setInterval(bounceDown,10)
+          let bouncedown = setInterval(bounceDown,0.1)
           function bounceDown(){
             div[2].style.top = speed + "px"
             speed = speed +1
@@ -73,10 +78,11 @@
             }
           }
         }
-      }
-    }
+      }}
     
-    div[2].addEventListener("click",bounce)
+    window.addEventListener("keydown",bounce)
+    
+   
 
     
 
