@@ -118,13 +118,20 @@
     let ballheight = parseInt(div[2].style.height)
     size = 30
     
-    div[2].addEventListener("click",function(click){
+    div[2].addEventListener("mousedown",function(click){
       console.dir(click)
-      // if(click === )
+      if(click.buttons === 1){
       ballwidth += size 
       ballheight += size 
       div[2].style.width = ballwidth + "px"
       div[2].style.height = ballheight + "px"
+      }
+      if(click.buttons === 2){
+      ballwidth -= size 
+      ballheight -= size 
+      div[2].style.width = ballwidth + "px"
+      div[2].style.height = ballheight + "px"
+      }
     })
 
     
