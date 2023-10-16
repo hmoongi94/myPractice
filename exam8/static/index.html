@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    /* ul{
+      cursor: url(http://localhost:8080/hmoongi94image3) 4 12,
+      auto;
+    } */
+    li {
+      list-style: none;
+    }
+    body{
+      overflow-x: hidden;
+      display: flex;
+    }
+    #root {
+      width: 80vw;
+      height: 100vh;
+      background-color: #ccc;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+    #root2 {
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      align-items: center;
+    }
+    #root2 div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 700;
+      font-size: 32px;
+    }
+
+    ul li {
+      width: 12vw;
+      height: 20vh;
+      margin-top: 3vw; 
+      margin-left: 5.5vw;
+      /* outline: 1px solid black; */
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 1;
+    }
+    /* #clickDiv{
+      background-color: aqua;
+      width: 100%;
+      height: 100%;
+
+      position: absolute;
+      top:0;
+      left: 0;
+      z-index: 10;
+    } */
+    div {
+      outline: 1px solid black;
+      width: 19vw;
+      height: 100vh;
+      background-color: blanchedalmond;
+    }
+
+    button {
+      width: 15vw;
+      height: 15vh; 
+    }
+    
+    #scorehow{
+      flex-direction: column;
+    }
+
+    p {
+      animation-name: slidein;
+      animation-duration: 1s;
+      animation-iteration-count: 1;
+    }
+    @keyframes slidein {
+      from{
+        height: 0%;
+      }
+      
+      to{
+        height:70%;
+      }
+    }
+    
+  </style>
+</head>
+
+<body>
+
+  <ul id="root">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    
+  </ul>
+  <div id="root2">
+    <div id="timehow">time: 30초</div>
+    <div id="scorehow">
+      score:
+    </div>
+    <div>
+      <button>start!</button>
+    </div>
+      
+    
+  </div>
+
+  <script>
+  
+    div = document.getElementsByTagName("div")
+    // console.log(div)
+    makeP = document.createElement("p")
+    p = document.getElementsByTagName("p")
+    button = document.getElementsByTagName("button")
+    ul = document.getElementsByTagName("ul")
+    li = document.getElementsByTagName("li")
+    scorehow = document.getElementById("scorehow")
+    timehow = document.getElementById("timehow")
+
+    gamewindow = document.getElementById("root")
+    
+    gamewindow.style.backgroundImage = "url(http://localhost:8080/hmoongi94image)"
+    console.dir(gamewindow)
+    gamewindow.style.backgroundSize = "105%"
+
+
+    // random = Math.floor(Math.random()*8-0 + 0)
+    // console.log(random)
+
+    makeTarget = function(random){
+      random = Math.floor(Math.random()*9-0 + 0)
+      // random = Math.floor(Math.random()*8-0 + 0)
+      // => 0~7까지 나옴
+      
+      li[random].appendChild(makeP)
+      p[0].style.width = "70%"
+      p[0].style.height = "70%"
+      // p[0].style.backgroundColor = "red"
+      p[0].style.backgroundImage = "URL(http://localhost:8080/hmoongi94image2)"
+      p[0].style.backgroundSize = "cover"
+   
+    }
+
+    let score = 0;
+    let setting
+
+    for(i=0; i<li.length; i++){
+    li[i].addEventListener("click",function(event){
+      if(event.target === p[0]){
+        console.log(event)
+        p[0].remove()
+        makeTarget()
+        score++;
+        scorehow.textContent = "score:" + score;
+      }
+    })
+  }
+
+  // 스코어 초기화 생성 모듈 밖에 있어야 함
+    // 삭제시 1씩 증가, 생성모듈 안에 있어야함
+
+    button[0].addEventListener("click",function(){
+      if(button[0].textContent === "start!"){
+      button[0].textContent = "stop!"
+      limittime(30)
+      makeTarget()
+      }
+      else if(button[0].textContent === "stop!"){
+        button[0].textContent = "start!"
+        p[0].remove()
+        timehow.textContent = "time: 30초"
+        scorehow.textContent = "score:"
+        score = 0 
+        clearInterval(setting)
+      }      
+    })
+
+    function limittime(num) { 
+      setting = setInterval(function() {
+      // 초당 1씩 감소
+      num--;
+      // 감소된 시간을 입력
+      timehow.textContent = 'time: ' + num +'초';
+      // 0보다 작거나 같을 때 조건식
+      if( num <= 0 ) {
+        timehow.textContent = '종료!';
+        // interval함수 종료
+        clearInterval(setting);
+      };
+      // 1초당 반복하여 texContent에 넣어줌
+      }, 1000);
+    }
+
+  </script>
+
+</body>
+</html>
