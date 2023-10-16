@@ -91,12 +91,12 @@
     function moving(key){
       console.dir(key)
       if(key.code === 'KeyD'){
-        let movingright = setInterval(movingRight,0.01)
+        let movingright = setInterval(movingRight,0.1)
         function movingRight(){
           div[2].style.left = movingspeed + "px"
-          movingspeed += 3
+          movingspeed += 5
           let clearright = clearInterval(movingright)
-          setTimeout(clearright,100)
+          setTimeout(clearright,1000)
           }
         } 
       
@@ -104,9 +104,9 @@
         let movingleft = setInterval(movingLeft,0.01)
         function movingLeft(){
           div[2].style.left = movingspeed + "px"
-          movingspeed -= 3
+          movingspeed -= 5
           let clearleft = clearInterval(movingleft)
-          setTimeout(clearleft,100)
+          setTimeout(clearleft,1000)
       }
     }}
 
