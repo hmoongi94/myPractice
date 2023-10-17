@@ -7,11 +7,16 @@ const equals = (a,b) =>{
   console.log(JSON.stringify(a) === JSON.stringify(b)) 
 }
 
-equals(arr3,arr2)
+// equals(arr3,arr2)
 
 // 직접 만들어쓰기 array.prototype.every()
+// every(and), some(or)
 const equals2 = (a,b) =>{
   if(a.length===b.length){
     return a.every((v,i) => v === b[i]);
   }
 }
+
+// sort메서드 사용
+const arr4 = [2,4,1,3]
+console.log(arr4.sort())
