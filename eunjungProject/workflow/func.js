@@ -20,26 +20,26 @@ for (let i = 0; i < img.length; i++) {
 // clientAnswer = clientAnswer.push(1,2,3)
 // console.log(clientAnswer)
 let clientAnswer = []
- equals=(arr1,arr2)=>{
-  console.log(JSON.stringify(arr1)===JSON.stringify(arr2))
+  equals=(arr1,arr2)=>{
+  return(JSON.stringify(arr1)===JSON.stringify(arr2))
 }
 
 button.addEventListener("click", function(){
   let correctAnswer = [0,2,5]
   console.log(correctAnswer)
   let c= 0
+
   for(let j=0; j<img.length; j++){
     if(img[j].style.backgroundColor ==="red"){
       clientAnswer[c] = j
       c= c+1
     }
   }
+
   if(equals(clientAnswer,correctAnswer) === true){
-    console.log(clientAnswer)
     alert("맞습니다.")
     clientAnswer = []
-  } else if(equals(clientAnswer,correctAnswer)=== false){
-    console.log(clientAnswer)
+  } else if(equals(clientAnswer,correctAnswer) === false){
     alert("틀렸습니다.")
     clientAnswer = []
   } else{
