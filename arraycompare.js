@@ -17,7 +17,7 @@ const equals2 = (a,b) =>{
     return a.every((v,i) => v === b[i]);
   }
 }
-console.log(equals2(arr1,arr2))
+// console.log(equals2(arr1,arr2))
 
 // sort메서드 사용
 const arr4 = [2,4,1,3]
@@ -33,4 +33,6 @@ for(let i=0; i<arrayB.length; i++){
   arrayA[i]=arrayB[i]
 }
 // 선언방식
-const arrayC = arrayA.map(data=>data);
+const arrayC = arrayB.map(data=> data);
+console.log(arrayC)
+console.log(arrayC===arrayB)
