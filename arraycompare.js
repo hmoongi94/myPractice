@@ -16,7 +16,8 @@ const equals2 = (a,b) =>{
     return a.every((v,i) => v === b[i]);
   }
 }
+console.log(equals2(arr1,arr2))
 
 // sort메서드 사용
 const arr4 = [2,4,1,3]
-console.log(arr4.sort())
+// console.log(arr4.sort())
