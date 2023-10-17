@@ -8,3 +8,10 @@ const equals = (a,b) =>{
 }
 
 equals(arr3,arr2)
+
+// 직접 만들어쓰기 array.prototype.every()
+const equals2 = (a,b) =>{
+  if(a.length===b.length){
+    return a.every((v,i) => v === b[i]);
+  }
+}
