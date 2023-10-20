@@ -20,8 +20,22 @@
       width:100px;
       height:100px;
       background-color: pink;
-      transform: translate(100px, 50px);
+      /* transform: translate(100px, 50px); */
+      /* scale:calc(5) -> 크기조절*/
+      /* rotate:calc(5); ->회전 */
+      /* transform 안에 translate */
+      /* transform 안에는 translate뿐만아니라 scale, rotate 등 이있다. */
       /* translate(x축, y축) */
+    }
+    div{
+      width: 100px;
+      height: 100px;
+      background-color: royalblue;
+      opacity: 1;
+      transition: opacity 3s;
+    }
+    div:hover{
+      opacity:0
     }
   </style>
 </head>
