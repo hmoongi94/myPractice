@@ -1,7 +1,7 @@
 const { fstat } = require('fs')
 const http = require('http')
 const port = process.env.PORT || 3000
-const contentType = {"Content-Type": "text/plain"}
+const contentType = {"Content-Type": "text/html"}
 
 function serveStaticFile(res, path, contenttype = contentType, responseCode = 200){
   fs.readFile(__dirname + path, (err,data)=>{
@@ -19,8 +19,7 @@ const server =http.createServer((req,res)=>{
   const path = req.url.replace(/\/?(?:\?.*)?$/, '').toLowerCase()
   switch(path){
     case '':
-      res.writeHead(200,contentType)
-      res.end('Homepage')
+      serveStaticFile(res, '/public/home.html')
       break
     case '/about':
       res.writeHead(200,contentType)
