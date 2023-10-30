@@ -1,4 +1,5 @@
-export function getWeatherJejuData() {
+// export
+ function getWeatherJejuData() {
   // OpenWeatherMap API 키
   const apiKeyjeju = '13e787bc80632c2e192c0e6abff23bee'; // 본인의 API 키로 대체해야 합니다.
   // 도시 이름
