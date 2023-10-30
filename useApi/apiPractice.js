@@ -2,11 +2,14 @@
 // 본인의 API 키로 대체 const city = 'Seoul'; 
 // 원하는 도시명으로 변경 가능 
 
+const city = 'Daejeon'
+const apiKey = '13e787bc80632c2e192c0e6abff23bee'
+
 // API 요청 
 fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`) 
 .then(response => response.json()) 
 .then(data => { 
-const temperature = data.main.temp; 
+  const temperature = data.main.temp; 
 // 온도 
 const humidity = data.main.humidity; 
 // 습도 
