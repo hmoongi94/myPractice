@@ -1,4 +1,5 @@
-export function getWeatherJejuData() {
+// export 
+function getWeatherJejuData() {
   // OpenWeatherMap API 키
   const apiKeyjeju = '13e787bc80632c2e192c0e6abff23bee'; // 본인의 API 키로 대체해야 합니다.
   // 도시 이름
@@ -15,3 +16,6 @@ export function getWeatherJejuData() {
           console.error("날씨 정보를 가져오는데 실패했습니다.", error);
       });
 }
+
+// console.log(getWeatherJejuData())
+// 비동기작업을 수행하기 때문에 fetch함수의 응답을 기다리지않고 바로 다음 코드를 수행해서 undefined가 나옴.
