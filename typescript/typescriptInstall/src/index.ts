@@ -127,3 +127,66 @@
   // danger = [] 
   // danger = 2
   
+  //* 요약
+  // 1. 객체 리터럴 또는 형태라 불리는 표기법({a:string}). 객체가 어떤 필드를 포함할 수 있는지 알고 있거나 객체의 모든 값이 같은 타입을 가질 때 사용한다.
+  // 2. 빈 객체 리터럴 표기법({}). 사용을 지양해라.
+  // 3. object타입. 어떤 필드를 가지고 있는지는 관심없고, 그저 객체가 필요할 때 사용한다.
+  // 4. object타입. 사용을 지양해라.
+
+//* 타입 별칭
+  //* (let, const, var) 변수를 선언해서 값 대신 변수로 칭하듯이 타입 별칭으로 타입을 가리킬 수 있다.
+  // type Age = number
+  // type Person = {
+  //   name: string
+  //   age: Age
+  // }
+
+  // let age: Age = 55
+  // let driver: Person = {
+  //   name: "james May",
+  //   age: age
+  // }
+
+  //* 타입별칭은 변수선언과 마찬가지로 하나의 타입을 2번 정의할 수는 없다.
+  // type Color = 'red'
+  // type Color = 'blue'
+
+  //* 모든 블록과 함수는 자신만의 영역을 가지므로 내부에 정의한 타입 별칭이 외부의 정의를 덮어쓴다.(shadowing)
+  // type Color = 'red'
+
+  // let x = Math.random() < .5
+  // if(x){
+  //   type Color = 'blue' //위의 color 정의를 덮어씀
+  //   let b: Color = 'blue'
+  // } else{
+  //   let c: Color = 'red'
+  // }
+
+  //* 유니온과 인터섹션 타입
+  //* 유니온: 합집합, 인터섹션: 교집합
+  // type Returns = string | null
+
+  // function(a:string, b: number){
+  //   return a||b
+  // }
+
+//* 배열
+  // *자바스크립트처럼 타입스크립트 배열도 연결, 푸시, 검색, 슬라이스 등을 지원하는 특별한 객체다.
+  //* T[] 문법으로 배열의 타입을 정의.
+  // let a = [1,2,3]
+  // var b = ['a','b']
+  // let c:string[] = ['a']
+  // let d = [1, 'a' , true]
+  // const e = [2,'b']
+
+  // let f = ['red']
+  // f.push('blue')
+  // f.push(true) //에러 'ture'는 불리언이기 때문에 string타입에 넣을 수 없음
+  
+  // let g = [] 
+  // g.push(1)
+  // g.push('red') 
+
+  // let h: number[] = []
+  // h.push(1)
+  // h.push('red') //에러 'red'타입 인수를 'number'타입 매개변수에 할당 할 수 없음
