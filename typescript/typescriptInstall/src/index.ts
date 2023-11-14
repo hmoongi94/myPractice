@@ -176,7 +176,7 @@
   // let a = [1,2,3]
   // var b = ['a','b']
   // let c:string[] = ['a']
-  // let d = [1, 'a' , true]
+  // let d = [1, 'a']
   // const e = [2,'b']
 
   // let f = ['red']
@@ -190,3 +190,27 @@
   // let h: number[] = []
   // h.push(1)
   // h.push('red') //에러 'red'타입 인수를 'number'타입 매개변수에 할당 할 수 없음
+
+  // d = []
+  // d = [1,'a',true] // 에러 초기화를 해도 string| number를 가진 상태임
+
+  // let d = [1,'a']
+  // const dMap = d.map(_=> {
+  //   if(typeof _ === 'number'){
+  //     return _ * 3 
+  //   }
+  //   return _.toUpperCase()
+  // })
+
+  // console.log(dMap)
+
+  //* 배열이 정의된 영역을 벗어나면 타입스크립트는 배열을 더 이상 확장할 수 없도록 최종타입을 할당한다.
+  // function buildArray(){
+  //   let a = []
+  //   a.push(1)
+  //   a.push('x')
+  //   return a
+  // }
+
+  // let myArray = buildArray() // (string | number)
+  // myArray.push(true) //에러 true타입의 인수는 string | number 타입의 매개변수에 할당 할 수 없음.
