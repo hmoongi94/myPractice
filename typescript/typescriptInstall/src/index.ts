@@ -102,9 +102,28 @@
   //* 주의점: 인덱스 시그니처의 키(T)는 반드시 number나 string타입에 할당할 수 있는 타입이어야한다.
   //* 인덱스 시그니처의 키 이름은 원하는 이름을 가져다 바꿔도 된다. 즉 key가 아니어도 된다.
 
-  let airplaneSeatingAssignments:{
-    [seatNumber: string] : string
-  } = {
-    '34D': 'Boris Cherny',
-    '34E' : 'Bill Gates'
-  }
+  // ex)
+  // let airplaneSeatingAssignments:{
+  //   [seatNumber: string] : string
+  // } = {
+  //   '34D': 'Boris Cherny',
+  //   '34E' : 'Bill Gates'
+  // }
+
+  //* 선택형(인덱스 시그니처) 외에 readonly 한정자를 이용해 특정 필드를 읽기 전용으로 정의할 수 있다.
+  //* const를 적용한듯이 읽기전용이라 바꿀 수 없다.
+  // let user:{
+  //   readonly firstname: string
+  // } = {
+  //   firstname: 'abby'
+  // }
+  // user.firstname
+  // user.firstname = 'abbey with an e' //읽기 전용 프로퍼티이므로 할당할 수 없음
+
+  //* 객체 리터럴 표기법에는 빈 객체 타입({})이라는 특별한 상황이 존재한다. null과 undefined를 제외한 모든 타입은 빈 객체 타입에 할당할 수 있으나, 이는 사용하기 까다롭게 만든다. 따라서 빈 객체는 피하는 것이 좋다.
+  // let danger:{}
+  // danger = {}
+  // danger = {x:1}
+  // danger = [] 
+  // danger = 2
+  
