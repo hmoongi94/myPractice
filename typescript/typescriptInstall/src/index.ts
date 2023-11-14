@@ -99,3 +99,12 @@
   //? 그럼 어떤 프로퍼티는 선택형이고 예정에 없던 프로퍼티가 추가될 수 있다고 타입스크립트에 알려줄 수 있을까?
   //* 인덱스 시그니처(index signature)
   //* [key: T]: U같은 문법을 인덱스 시그니처라 부르며 타입스크립트에 어떤 객체가 여러 키를 가질 수 있음을 알려준다.
+  //* 주의점: 인덱스 시그니처의 키(T)는 반드시 number나 string타입에 할당할 수 있는 타입이어야한다.
+  //* 인덱스 시그니처의 키 이름은 원하는 이름을 가져다 바꿔도 된다. 즉 key가 아니어도 된다.
+
+  let airplaneSeatingAssignments:{
+    [seatNumber: string] : string
+  } = {
+    '34D': 'Boris Cherny',
+    '34E' : 'Bill Gates'
+  }
