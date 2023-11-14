@@ -214,3 +214,14 @@
 
   // let myArray = buildArray() // (string | number)
   // myArray.push(true) //에러 true타입의 인수는 string | number 타입의 매개변수에 할당 할 수 없음.
+
+  // * 연습문제
+  //? 타입스크립트는 다음의 값을 어떻게 추론할까?
+  // let a = 1042
+  // let b = 'apples and pine'
+  // const c = 'pineapples'
+  // let d = [true, true, false]
+  // let e = {type: 'ficus'}
+  // let f = [1, false]
+  // const g = [3]
+  // let h = null
