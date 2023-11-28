@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입 및 로그인</title>
+</head>
+<body>
+  <h1>회원가입</h1>
+  <form id="signupForm">
+    <label for="signupUsername">아이디:</label>
+    <input type="text" id="signupUsername" name="username" required>
+
+    <label for="signupPassword">비밀번호:</label>
+    <input type="password" id="signupPassword" name="password" required>
+
+    <button type="submit">가입하기</button>
+  </form>
+
+  <h1>로그인</h1>
+  <form id="loginForm">
+    <label for="loginUsername">아이디:</label>
+    <input type="text" id="loginUsername" name="username" required>
+
+    <label for="loginPassword">비밀번호:</label>
+    <input type="password" id="loginPassword" name="password" required>
+
+    <button type="submit">로그인</button>
+  </form>
+
+  <script src="index.js"></script>
+</body>
+</html>

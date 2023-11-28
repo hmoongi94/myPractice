@@ -25,6 +25,7 @@ app.use(static('./public'))
 
 // 회원가입 API
 app.post('/signup', async (req, res) => {
+  console.log(req.body)
   const { username, password } = req.body;
 
   try {
@@ -45,6 +46,7 @@ app.post('/signup', async (req, res) => {
 
 // 로그인 API
 app.post('/login', async (req, res) => {
+  console.log(req.body)
   const { username, password } = req.body;
 
   try {
