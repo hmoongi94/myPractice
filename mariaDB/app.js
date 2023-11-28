@@ -21,7 +21,7 @@ const pool = mariadb.createPool({
 // Body parser 설정
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(static('./public'))
+app.use(express.static('./public'))
 
 // 회원가입 API
 app.post('/signup', async (req, res) => {
