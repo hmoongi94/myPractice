@@ -26,6 +26,7 @@ app.use(express.static('./public'))
 // 회원가입 API
 app.post('/signup', async (req, res) => {
   console.log(req.body)
+  //* 구조분해 시 주의할점) req.body라는 객체에서 {}의 속성값과 일치해야함.
   const { username, password } = req.body;
 
   try {
