@@ -5,7 +5,7 @@ import { parentBox } from "./components/parentBox.js";
 
 export function load(){
   document.addEventListener('DOMContentLoaded',function(){
-    renderElement(parentBox())
+    render(parentBox(),'root')
 
   })
 }
