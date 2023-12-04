@@ -27,6 +27,7 @@ class Square extends React.Component {
   }
 }
 
+//* todo: 게임완성하기 -> State끌어올리기?
 class Board extends React.Component {
   renderSquare(i) {
     return <Square value={i} />;
