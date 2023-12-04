@@ -14,11 +14,14 @@ class Square extends React.Component {
 
   render() {
     return (
-      <button className="square" onClick={()=>
-        console.log('click')
-      }>
-        {/* props를 통해 데이터 전달하기 */}
-        {this.props.value}
+      <button 
+      className="square" 
+      onClick={()=>
+        // * setState는 state를 업데이트 하는 것?
+        this.setState({value: 'X'})}
+        >
+        
+        {this.state.value}
       </button>
     );
   }
