@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 class Square extends React.Component {
+  // 클래스 초기화
   constructor(props){
     super(props);
     this.state={
