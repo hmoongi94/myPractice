@@ -1,5 +1,6 @@
 import { createElement } from "./util/createElement.js";
 import { render } from "./util/render.js";
+import { componentLeftSide } from "./component/componentLeftSide.js";
 
 export function load() {
   document.addEventListener('DOMContentLoaded', function () {
@@ -26,8 +27,9 @@ export function load() {
       { hash: '#contact', text: 'Contact' }
     ]
 
-    const virtualDom = component(stateData)
     const container = document.getElementById('root')
-    container.appendChild(render(virtualDom))
+
+    container.appendChild(render(component(stateData)))
+    container.appendChild(render(componentLeftSide(stateData)))
   })
 }
