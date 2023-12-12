@@ -1,0 +1,8 @@
+.root{
+  display: flex;
+}
+
+.parent{
+  display: flex;
+  background-color: red;
+}

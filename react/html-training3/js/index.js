@@ -1,7 +1,7 @@
 import { createElement } from "./util/createElement.js";
 import { render } from "./util/render.js";
-import { componentLeftSide } from "./component/componentLeftSide.js";
 import { componentParent } from "./component/componentParent.js";
+import { componentLeftSide } from "./component/componentLeftSide.js";
 
 export function load() {
   document.addEventListener('DOMContentLoaded', function () {
@@ -29,6 +29,8 @@ export function load() {
     ]
 
     const container = document.getElementById('root')
+    // container.classList.add('root')
+    console.dir(container)
 
     container.appendChild(render(component(stateData)))
     container.appendChild(render(componentParent()))
