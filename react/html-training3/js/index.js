@@ -31,5 +31,7 @@ export function load() {
 
     container.appendChild(render(component(stateData)))
     container.appendChild(render(componentLeftSide(stateData)))
+
+    
   })
 }
