@@ -5,7 +5,7 @@ import { component2 } from "./component2.js";
 import { component3 } from "./component3.js";
 import { data } from "../data/data.js";
 
-export function componentParent(){
+export function component(){
   let Parent =  createElement('div', styleData.parentAttribute ,createElement('div',styleData.leftChildAttribute, data.article1),createElement('div',styleData.rightChildAttribute, component1(),component2(),component3()))
   
   return Parent

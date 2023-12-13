@@ -1,5 +1,5 @@
 import { render } from "./util/render.js";
-import { componentParent } from "./component/componentParent.js";
+import { component } from "./component/componentParent.js";
 
 export function load() {
   document.addEventListener('DOMContentLoaded', function () {
@@ -8,7 +8,7 @@ export function load() {
     // container.classList.add('root')
     console.dir(container)
 
-    container.appendChild(render(componentParent()))
+    container.appendChild(render(component()))
     
   })
 }
