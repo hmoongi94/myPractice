@@ -1,7 +1,10 @@
 import { render } from "./util/render.js";
 import { data } from "./data/articleData.js";
 
+// 초기 컴포넌트
 import { component } from "./component/component-draft.js";
+
+// 초기 컴포넌트 매개변수화
 import { parentComponent } from "./component/parentComponent.js";
 import { component4 } from "./component/rightComponent/component4.js";
 import { component5 } from "./component/rightComponent/component5.js";
