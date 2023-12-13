@@ -7,8 +7,6 @@ import { component4 } from "./component/rightComponent/component4.js";
 import { component5 } from "./component/rightComponent/component5.js";
 import { component6 } from "./component/rightComponent/component6.js";
 
-
-
 export function load() {
   document.addEventListener('DOMContentLoaded', function () {
 

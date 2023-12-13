@@ -7,5 +7,6 @@ export const styleData = {
   component3: {stlye:"width:963px; height:57px; top:416px; left:595px; font-weight:400; font-style: italic; font-size: 48px; line-height: 58.09px;"},
   component4: {style: "width:250px; height:39px; font-size:32px; font-weight: 400; line-height: 38.73px;"},
   component5: {style:"width:709px; height:286px; font-weight:400; font-size:12px; line-height: 14.52px;"},
-  component6: {style:"width:303px; height:387px; font-weight:400; font-size:12px; line-height: 14.52px;"}
+  component6: {style:"width:303px; height:387px; font-weight:400; font-size:12px; line-height: 14.52px;"},
+  component6parent:{style:" display: inline-block; width: 303px; height: 387px;"}
 }

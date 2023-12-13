@@ -3,5 +3,5 @@ import { styleData } from "../../data/styleData.js";
 import { data } from "../../data/articleData.js";
 
 export function component6(){
-  return createElement('div', styleData.component6, data.article8)
+  return createElement('div',styleData.component6parent, createElement('div', styleData.component6, data.article8))
 }
