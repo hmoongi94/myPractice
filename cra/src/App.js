@@ -9,6 +9,7 @@ export default function MyApp() {
     </div>
   );
 }
+//* 각 버튼이 고유한 카운트 state를 “기억”하고 다른 버튼에 영향을 주지 않는 방식에 주목하세요.
 
 function MyButton() {
   const [count, setCount] = useState(0);
