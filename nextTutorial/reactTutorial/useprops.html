@@ -13,8 +13,8 @@
     <script type="text/jsx">
       const app = document.getElementById("app")
 
-      function Header(props) {
-        console.log(props)
+      function Header({title}) {
+        console.log(title)
         
         return <h1>Develop. Preview. Ship.</h1>;
       }
@@ -23,7 +23,7 @@
       function HomePage() {
         return (
           <div>
-            <Header title="React" key='id'/>
+            <Header title="React"/>
           </div>
         );
       }
