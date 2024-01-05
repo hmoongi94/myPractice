@@ -56,6 +56,32 @@ app.post('/orders', (req, res) => {
   });
 });
 
+app.post('/order-details', (req, res) => {
+  const { orderId, productID, quantity } = req.body;
+
+  // Validate that required fields are present
+  if (!orderId || !productID || !quantity) {
+    return res.status(400).json({ error: 'OrderID, ProductID, and Quantity are required fields.' });
+  }
+
+  // Validate that orderId, productID, and quantity are valid integers
+  if (!Number.isInteger(Number(orderId)) || !Number.isInteger(Number(productID)) || !Number.isInteger(Number(quantity))) {
+    return res.status(400).json({ error: 'OrderID, ProductID, and Quantity must be valid integers.' });
+  }
+
+  // Insert new order detail into the orderdetails table
+  const insertQuery = 'INSERT INTO orderdetails (OrderID, ProductID, Quantity) VALUES (?, ?, ?)';
+  connection.query(insertQuery, [orderId, productID, quantity], (error, results) => {
+    if (error) {
+      console.error('Error adding order detail to the database:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else {
+      const insertedDetailId = results.insertId;
+      res.status(201).json({ detailId: insertedDetailId, message: 'Order detail added successfully!' });
+    }
+  });
+});
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

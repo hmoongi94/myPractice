@@ -89,101 +89,129 @@
         );
       };
 
-       // OrderDetailsFormComponent
-  const OrderDetailsFormComponent = () => {
-    const [orderId, setOrderId] = React.useState('');
-    const [productID, setProductID] = React.useState('');
-    const [quantity, setQuantity] = React.useState('');
+      // OrderDetailsFormComponent
+      const OrderDetailsFormComponent = () => {
+        const [orderId, setOrderId] = React.useState("");
+        const [productID, setProductID] = React.useState("");
+        const [quantity, setQuantity] = React.useState("");
 
-    const handleFormSubmit = async (e) => {
-      e.preventDefault();
+        const handleFormSubmit = async (e) => {
+          e.preventDefault();
 
-      try {
-        const response = await fetch('http://localhost:3001/order-details', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            orderId,
-            productID,
-            quantity,
-          }),
-        });
+          try {
+            const response = await fetch(
+              "http://localhost:3001/order-details",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  orderId,
+                  productID,
+                  quantity,
+                }),
+              }
+            );
 
-        if (response.ok) {
-          console.log('주문 상세 정보가 성공적으로 추가되었습니다!');
-          // 성공적인 주문 상세 정보 추가 후 추가적인 로직 또는 UI 업데이트
-        } else {
-          console.error('주문 상세 정보 추가에 실패했습니다.');
-        }
-      } catch (error) {
-        console.error('주문 상세 정보 추가 중 에러 발생:', error);
-      }
-    };
+            if (response.ok) {
+              console.log("주문 상세 정보가 성공적으로 추가되었습니다!");
+              // 성공적인 주문 상세 정보 추가 후 추가적인 로직 또는 UI 업데이트
+            } else {
+              console.error("주문 상세 정보 추가에 실패했습니다.");
+            }
+          } catch (error) {
+            console.error("주문 상세 정보 추가 중 에러 발생:", error);
+          }
+        };
 
-    return (
-      React.createElement('div', null,
-        React.createElement('h2', null, '새 주문 상세 정보 추가'),
-        React.createElement('form', { onSubmit: handleFormSubmit },
-          React.createElement('label', null,
-            '주문 ID:',
-            React.createElement('input', {
-              type: 'text',
-              value: orderId,
-              onChange: (e) => setOrderId(e.target.value),
-            })
-          ),
-          React.createElement('br'),
-          React.createElement('label', null,
-            '상품 ID:',
-            React.createElement('input', {
-              type: 'text',
-              value: productID,
-              onChange: (e) => setProductID(e.target.value),
-            })
-          ),
-          React.createElement('br'),
-          React.createElement('label', null,
-            '수량:',
-            React.createElement('input', {
-              type: 'text',
-              value: quantity,
-              onChange: (e) => setQuantity(e.target.value),
-            })
-          ),
-          React.createElement('br'),
-          React.createElement('button', { type: 'submit' }, '주문 상세 정보 추가')
-        )
-      )
-    );
-  };
+        return React.createElement(
+          "div",
+          null,
+          React.createElement("h2", null, "새 주문 상세 정보 추가"),
+          React.createElement(
+            "form",
+            { onSubmit: handleFormSubmit },
+            React.createElement(
+              "label",
+              null,
+              "주문 ID:",
+              React.createElement("input", {
+                type: "text",
+                value: orderId,
+                onChange: (e) => setOrderId(e.target.value),
+              })
+            ),
+            React.createElement("br"),
+            React.createElement(
+              "label",
+              null,
+              "상품 ID:",
+              React.createElement("input", {
+                type: "text",
+                value: productID,
+                onChange: (e) => setProductID(e.target.value),
+              })
+            ),
+            React.createElement("br"),
+            React.createElement(
+              "label",
+              null,
+              "수량:",
+              React.createElement("input", {
+                type: "text",
+                value: quantity,
+                onChange: (e) => setQuantity(e.target.value),
+              })
+            ),
+            React.createElement("br"),
+            React.createElement(
+              "button",
+              { type: "submit" },
+              "주문 상세 정보 추가"
+            )
+          )
+        );
+      };
 
       // OrderDetailsComponent
       const OrderDetailsComponent = ({ orderId }) => {
         const [orderDetails, setOrderDetails] = React.useState(null);
-
-        const fetchOrderDetails = async () => {
-          try {
-            const response = await fetch(
-              `http://localhost:3001/order-details/${orderId}`
-            );
-            const data = await response.json();
-            setOrderDetails(data);
-          } catch (error) {
-            console.error("Error fetching order details:", error);
-          }
-        };
+        const [orderInfo, setOrderInfo] = React.useState(null);
 
         React.useEffect(() => {
+          const fetchOrderDetails = async () => {
+            try {
+              const response = await fetch(
+                `http://localhost:3001/order-details/${orderId}`
+              );
+              const data = await response.json();
+              setOrderDetails(data);
+
+              // Fetch order information using orderId
+              const orderResponse = await fetch(
+                `http://localhost:3001/orders/${orderId}`
+              );
+              const orderData = await orderResponse.json();
+              setOrderInfo(orderData);
+            } catch (error) {
+              console.error("주문 상세 정보를 불러오는 중 오류 발생:", error);
+            }
+          };
+
           fetchOrderDetails();
         }, [orderId]);
+
+        // 추가: 주문 상세 정보가 변경될 때마다 자동으로 업데이트
+        React.useEffect(() => {
+          fetchOrderDetails();
+        }, [orderDetails]);
 
         return React.createElement(
           "div",
           null,
           React.createElement("h2", null, "Order Details"),
-          orderDetails
+          orderDetails && orderInfo
             ? React.createElement(
                 "div",
                 null,
@@ -201,6 +229,16 @@
                   "p",
                   null,
                   `Quantity: ${orderDetails.Quantity}`
+                ),
+                React.createElement(
+                  "p",
+                  null,
+                  `Order Date: ${orderInfo.OrderDate}`
+                ),
+                React.createElement(
+                  "p",
+                  null,
+                  `Customer ID: ${orderInfo.CustomerID}`
                 )
               )
             : React.createElement("p", null, "Loading order details...")
@@ -209,7 +247,9 @@
 
       // Render the components to target elements
       const orderFormTargetElement = document.getElementById("order-form-root");
-      const orderDetailsFormTargetElement = document.getElementById('orderDetailsFormRoot');
+      const orderDetailsFormTargetElement = document.getElementById(
+        "orderDetailsFormRoot"
+      );
       const orderDetailsTargetElement =
         document.getElementById("order-details-root");
 
@@ -218,7 +258,10 @@
         orderFormTargetElement
       );
 
-      ReactDOM.render(React.createElement(OrderDetailsFormComponent), orderDetailsFormTargetElement);
+      ReactDOM.render(
+        React.createElement(OrderDetailsFormComponent),
+        orderDetailsFormTargetElement
+      );
 
       ReactDOM.render(
         React.createElement(OrderDetailsComponent, { orderId: 1 }),
