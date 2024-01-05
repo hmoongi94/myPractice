@@ -157,37 +157,69 @@
       };
 
       // OrderDetailsComponent
-      const OrderDetailsComponent = ({ orderId }) => {
+      const OrderDetailsComponent = () => {
+        const [orderIdInput, setOrderIdInput] = React.useState("");
         const [orderDetails, setOrderDetails] = React.useState(null);
         const [orderInfo, setOrderInfo] = React.useState(null);
+        const [loading, setLoading] = React.useState(false);
+        const [error, setError] = React.useState(null);
 
-        const fetchOrderDetails = React.useCallback(async () => {
+        const fetchOrderDetails = async () => {
+          setLoading(true);
+          setError(null);
+
           try {
             const response = await fetch(
-              `http://localhost:3001/order-details/${orderId}`
+              `http://localhost:3001/order-details/${orderIdInput}`
             );
             const data = await response.json();
+
+            if (!response.ok) {
+              throw new Error(data.message || "Failed to fetch order details.");
+            }
+
             setOrderDetails(data);
 
             // Fetch order information using orderId
             const orderResponse = await fetch(
-              `http://localhost:3001/orders/${orderId}`
+              `http://localhost:3001/orders/${orderIdInput}`
             );
             const orderData = await orderResponse.json();
+
+            if (!orderResponse.ok) {
+              throw new Error(
+                orderData.message || "Failed to fetch order info."
+              );
+            }
+
             setOrderInfo(orderData);
           } catch (error) {
-            console.error("Error fetching order details:", error);
+            setError(error.message || "Error fetching order details.");
+          } finally {
+            setLoading(false);
           }
-        }, [orderId]);
+        };
 
-        React.useEffect(() => {
-          fetchOrderDetails();
-        }, [fetchOrderDetails]); // Only run effect if fetchOrderDetails changes
+        const handleOrderIdChange = (e) => {
+          setOrderIdInput(e.target.value);
+        };
 
         return (
           <div>
             <h2>Order Details</h2>
-            {orderDetails && orderInfo ? (
+            <label>Enter Order ID: </label>
+            <input
+              type="text"
+              value={orderIdInput}
+              onChange={handleOrderIdChange}
+            />
+            <button onClick={fetchOrderDetails}>Fetch Details</button>
+
+            {loading ? (
+              <p>Loading order details...</p>
+            ) : error ? (
+              <p>Error: {error}</p>
+            ) : orderDetails && orderInfo ? (
               <div>
                 <p>Detail ID: {orderDetails.DetailID}</p>
                 <p>Product ID: {orderDetails.ProductID}</p>
@@ -195,9 +227,7 @@
                 <p>Order Date: {orderInfo.OrderDate}</p>
                 <p>Customer ID: {orderInfo.CustomerID}</p>
               </div>
-            ) : (
-              <p>Loading order details...</p>
-            )}
+            ) : null}
           </div>
         );
       };
