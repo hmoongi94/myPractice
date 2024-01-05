@@ -5,19 +5,8 @@ const app = express();
 const port = 3001;
 const mysql = require('mysql2');
 
-// const orders = [
-//   { OrderID: 1, CustomerID: 1, OrderDate: '2024-01-05' },
-//   { OrderID: 2, CustomerID: 5, OrderDate: '2024-01-05' },
-//   { OrderID: 3, CustomerID: 6, OrderDate: '2024-01-05' },
-//   // ... 다른 주문 데이터들
-// ];
-
-// const orderDetails = [
-//   { DetailID: 1, OrderID: 1, ProductID: 201, Quantity: 2 },
-//   { DetailID: 3, OrderID: 2, ProductID: 203, Quantity: 5 },
-//   { DetailID: 5, OrderID: 3, ProductID: 205, Quantity: 3 },
-//   // ... 다른 주문 상세 데이터들
-// ];
+app.use(cors());
+app.use(express.json());
 
 const connection = mysql.createConnection({
   host: 'localhost', // MariaDB 호스트 주소
@@ -37,28 +26,34 @@ connection.connect((err) => {
 const path = require('path')
 const indexPath = path.join(__dirname, './index.html');
 
-app.use(cors());
 app.get('/', (req, res) => {
   res.sendFile(path.join(indexPath));
 });
 
+app.post('/orders', (req, res) => {
+  const { customerID, orderDate } = req.body;
 
-app.get('/order-details/:orderId', (req, res) => {
-  const orderId = parseInt(req.params.orderId);
-  const orderDetail = orderDetails.find((detail) => detail.OrderID === orderId);
-  const order = orders.find((order) => order.OrderID === orderId);
-
-  if (orderDetail) {
-    if (order) {
-      // Combine orderDetails and orders information
-      const combinedInfo = { ...orderDetail, OrderDate: order.OrderDate, CustomerID: order.CustomerID };
-      res.json(combinedInfo);
-    } else {
-      res.status(404).json({ error: 'Order not found' });
-    }
-  } else {
-    res.status(404).json({ error: 'Order detail not found' });
+  // Validate that required fields are present
+  if (!customerID || !orderDate) {
+    return res.status(400).json({ error: 'CustomerID and OrderDate are required fields.' });
   }
+
+  // Validate that customerID is a valid integer
+  if (!Number.isInteger(Number(customerID))) {
+    return res.status(400).json({ error: 'CustomerID must be a valid integer.' });
+  }
+
+  // Insert new order into the orders table
+  const insertQuery = 'INSERT INTO orders (CustomerID, OrderDate) VALUES (?, ?)';
+  connection.query(insertQuery, [customerID, orderDate], (error, results) => {
+    if (error) {
+      console.error('Error adding order to the database:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else {
+      const insertedOrderId = results.insertId;
+      res.status(201).json({ orderId: insertedOrderId, message: 'Order added successfully!' });
+    }
+  });
 });
 
 app.listen(port, () => {
