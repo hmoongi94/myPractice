@@ -55,37 +55,31 @@
           }
         };
 
-        return React.createElement(
-          "div",
-          null,
-          React.createElement("h2", null, "Add New Order"),
-          React.createElement(
-            "form",
-            { onSubmit: handleFormSubmit },
-            React.createElement(
-              "label",
-              null,
-              "Customer ID:",
-              React.createElement("input", {
-                type: "text",
-                value: customerID,
-                onChange: (e) => setCustomerID(e.target.value),
-              })
-            ),
-            React.createElement("br"),
-            React.createElement(
-              "label",
-              null,
-              "Order Date:",
-              React.createElement("input", {
-                type: "text", // You might want to use a date picker for better user experience
-                value: orderDate,
-                onChange: (e) => setOrderDate(e.target.value),
-              })
-            ),
-            React.createElement("br"),
-            React.createElement("button", { type: "submit" }, "Add Order")
-          )
+        return (
+          <div>
+            <h2>Add New Order</h2>
+            <form onSubmit={handleFormSubmit}>
+              <label>
+                Customer ID:
+                <input
+                  type="text"
+                  value={customerID}
+                  onChange={(e) => setCustomerID(e.target.value)}
+                />
+              </label>
+              <br />
+              <label>
+                Order Date:
+                <input
+                  type="text" // You might want to use a date picker for better user experience
+                  value={orderDate}
+                  onChange={(e) => setOrderDate(e.target.value)}
+                />
+              </label>
+              <br />
+              <button type="submit">Add Order</button>
+            </form>
+          </div>
         );
       };
 
@@ -125,52 +119,40 @@
           }
         };
 
-        return React.createElement(
-          "div",
-          null,
-          React.createElement("h2", null, "새 주문 상세 정보 추가"),
-          React.createElement(
-            "form",
-            { onSubmit: handleFormSubmit },
-            React.createElement(
-              "label",
-              null,
-              "주문 ID:",
-              React.createElement("input", {
-                type: "text",
-                value: orderId,
-                onChange: (e) => setOrderId(e.target.value),
-              })
-            ),
-            React.createElement("br"),
-            React.createElement(
-              "label",
-              null,
-              "상품 ID:",
-              React.createElement("input", {
-                type: "text",
-                value: productID,
-                onChange: (e) => setProductID(e.target.value),
-              })
-            ),
-            React.createElement("br"),
-            React.createElement(
-              "label",
-              null,
-              "수량:",
-              React.createElement("input", {
-                type: "text",
-                value: quantity,
-                onChange: (e) => setQuantity(e.target.value),
-              })
-            ),
-            React.createElement("br"),
-            React.createElement(
-              "button",
-              { type: "submit" },
-              "주문 상세 정보 추가"
-            )
-          )
+        return (
+          <div>
+            <h2>새 주문 상세 정보 추가</h2>
+            <form onSubmit={handleFormSubmit}>
+              <label>
+                주문 ID:
+                <input
+                  type="text"
+                  value={orderId}
+                  onChange={(e) => setOrderId(e.target.value)}
+                />
+              </label>
+              <br />
+              <label>
+                상품 ID:
+                <input
+                  type="text"
+                  value={productID}
+                  onChange={(e) => setProductID(e.target.value)}
+                />
+              </label>
+              <br />
+              <label>
+                수량:
+                <input
+                  type="text"
+                  value={quantity}
+                  onChange={(e) => setQuantity(e.target.value)}
+                />
+              </label>
+              <br />
+              <button type="submit">주문 상세 정보 추가</button>
+            </form>
+          </div>
         );
       };
 
@@ -179,8 +161,7 @@
         const [orderDetails, setOrderDetails] = React.useState(null);
         const [orderInfo, setOrderInfo] = React.useState(null);
 
-        
-        const fetchOrderDetails = async () => {
+        const fetchOrderDetails = React.useCallback(async () => {
           try {
             const response = await fetch(
               `http://localhost:3001/order-details/${orderId}`
@@ -197,52 +178,27 @@
           } catch (error) {
             console.error("Error fetching order details:", error);
           }
-        };
-
-        React.useEffect(() => {
-          fetchOrderDetails();
         }, [orderId]);
 
-        // 추가: 주문 상세 정보가 변경될 때마다 자동으로 업데이트
         React.useEffect(() => {
           fetchOrderDetails();
-        }, [orderDetails]);
+        }, [fetchOrderDetails]); // Only run effect if fetchOrderDetails changes
 
-        return React.createElement(
-          "div",
-          null,
-          React.createElement("h2", null, "Order Details"),
-          orderDetails && orderInfo
-            ? React.createElement(
-                "div",
-                null,
-                React.createElement(
-                  "p",
-                  null,
-                  `Detail ID: ${orderDetails.DetailID}`
-                ),
-                React.createElement(
-                  "p",
-                  null,
-                  `Product ID: ${orderDetails.ProductID}`
-                ),
-                React.createElement(
-                  "p",
-                  null,
-                  `Quantity: ${orderDetails.Quantity}`
-                ),
-                React.createElement(
-                  "p",
-                  null,
-                  `Order Date: ${orderInfo.OrderDate}`
-                ),
-                React.createElement(
-                  "p",
-                  null,
-                  `Customer ID: ${orderInfo.CustomerID}`
-                )
-              )
-            : React.createElement("p", null, "Loading order details...")
+        return (
+          <div>
+            <h2>Order Details</h2>
+            {orderDetails && orderInfo ? (
+              <div>
+                <p>Detail ID: {orderDetails.DetailID}</p>
+                <p>Product ID: {orderDetails.ProductID}</p>
+                <p>Quantity: {orderDetails.Quantity}</p>
+                <p>Order Date: {orderInfo.OrderDate}</p>
+                <p>Customer ID: {orderInfo.CustomerID}</p>
+              </div>
+            ) : (
+              <p>Loading order details...</p>
+            )}
+          </div>
         );
       };
 
