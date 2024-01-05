@@ -179,26 +179,27 @@
         const [orderDetails, setOrderDetails] = React.useState(null);
         const [orderInfo, setOrderInfo] = React.useState(null);
 
+        
+        const fetchOrderDetails = async () => {
+          try {
+            const response = await fetch(
+              `http://localhost:3001/order-details/${orderId}`
+            );
+            const data = await response.json();
+            setOrderDetails(data);
+
+            // Fetch order information using orderId
+            const orderResponse = await fetch(
+              `http://localhost:3001/orders/${orderId}`
+            );
+            const orderData = await orderResponse.json();
+            setOrderInfo(orderData);
+          } catch (error) {
+            console.error("Error fetching order details:", error);
+          }
+        };
+
         React.useEffect(() => {
-          const fetchOrderDetails = async () => {
-            try {
-              const response = await fetch(
-                `http://localhost:3001/order-details/${orderId}`
-              );
-              const data = await response.json();
-              setOrderDetails(data);
-
-              // Fetch order information using orderId
-              const orderResponse = await fetch(
-                `http://localhost:3001/orders/${orderId}`
-              );
-              const orderData = await orderResponse.json();
-              setOrderInfo(orderData);
-            } catch (error) {
-              console.error("주문 상세 정보를 불러오는 중 오류 발생:", error);
-            }
-          };
-
           fetchOrderDetails();
         }, [orderId]);
 
