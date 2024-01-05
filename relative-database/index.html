@@ -1,87 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>React Component in HTML</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Component in HTML</title>
+  </head>
+  <body>
+    <!-- React and ReactDOM CDN links -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
 
-  <!-- React and ReactDOM CDN links -->
-  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- Babel CDN for JSX transformation -->
+    <script
+      crossorigin
+      src="https://unpkg.com/@babel/standalone/babel.min.js"
+    ></script>
 
-  <!-- Babel CDN for JSX transformation -->
-  <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- React Components -->
+    <script type="text/babel">
+      // OrderFormComponent
+      const OrderFormComponent = () => {
+        const [customerID, setCustomerID] = React.useState("");
+        const [orderDate, setOrderDate] = React.useState("");
 
-  <!-- React Components -->
-  <script type="text/babel">
-    // OrderFormComponent
-    const OrderFormComponent = () => {
-      const [customerID, setCustomerID] = React.useState('');
-      const [orderDate, setOrderDate] = React.useState('');
+        const handleFormSubmit = async (e) => {
+          e.preventDefault();
 
-      const handleFormSubmit = async (e) => {
-        e.preventDefault();
+          try {
+            const response = await fetch("http://localhost:3001/orders", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                customerID,
+                orderDate,
+              }),
+            });
 
-        try {
-          const response = await fetch('http://localhost:3001/orders', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              customerID,
-              orderDate,
-            }),
-          });
-
-          if (response.ok) {
-            console.log('Order added successfully!');
-            // Additional logic or UI updates after successful order addition
-          } else {
-            console.error('Failed to add order.');
+            if (response.ok) {
+              console.log("Order added successfully!");
+              // Additional logic or UI updates after successful order addition
+            } else {
+              console.error("Failed to add order.");
+            }
+          } catch (error) {
+            console.error("Error adding order:", error);
           }
-        } catch (error) {
-          console.error('Error adding order:', error);
-        }
-      };
+        };
 
-      return (
-        React.createElement('div', null,
-          React.createElement('h2', null, 'Add New Order'),
-          React.createElement('form', { onSubmit: handleFormSubmit },
-            React.createElement('label', null,
-              'Customer ID:',
-              React.createElement('input', {
-                type: 'text',
+        return React.createElement(
+          "div",
+          null,
+          React.createElement("h2", null, "Add New Order"),
+          React.createElement(
+            "form",
+            { onSubmit: handleFormSubmit },
+            React.createElement(
+              "label",
+              null,
+              "Customer ID:",
+              React.createElement("input", {
+                type: "text",
                 value: customerID,
                 onChange: (e) => setCustomerID(e.target.value),
               })
             ),
-            React.createElement('br'),
-            React.createElement('label', null,
-              'Order Date:',
-              React.createElement('input', {
-                type: 'text', // You might want to use a date picker for better user experience
+            React.createElement("br"),
+            React.createElement(
+              "label",
+              null,
+              "Order Date:",
+              React.createElement("input", {
+                type: "text", // You might want to use a date picker for better user experience
                 value: orderDate,
                 onChange: (e) => setOrderDate(e.target.value),
               })
             ),
-            React.createElement('br'),
-            React.createElement('button', { type: 'submit' }, 'Add Order')
+            React.createElement("br"),
+            React.createElement("button", { type: "submit" }, "Add Order")
           )
-        )
-      );
+        );
+      };
+
+       // OrderDetailsFormComponent
+  const OrderDetailsFormComponent = () => {
+    const [orderId, setOrderId] = React.useState('');
+    const [productID, setProductID] = React.useState('');
+    const [quantity, setQuantity] = React.useState('');
+
+    const handleFormSubmit = async (e) => {
+      e.preventDefault();
+
+      try {
+        const response = await fetch('http://localhost:3001/order-details', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            orderId,
+            productID,
+            quantity,
+          }),
+        });
+
+        if (response.ok) {
+          console.log('주문 상세 정보가 성공적으로 추가되었습니다!');
+          // 성공적인 주문 상세 정보 추가 후 추가적인 로직 또는 UI 업데이트
+        } else {
+          console.error('주문 상세 정보 추가에 실패했습니다.');
+        }
+      } catch (error) {
+        console.error('주문 상세 정보 추가 중 에러 발생:', error);
+      }
     };
 
-    // Render the component to a target element
-    const targetElement = document.getElementById('root');
-    ReactDOM.render(React.createElement(OrderFormComponent), targetElement);
-  </script>
+    return (
+      React.createElement('div', null,
+        React.createElement('h2', null, '새 주문 상세 정보 추가'),
+        React.createElement('form', { onSubmit: handleFormSubmit },
+          React.createElement('label', null,
+            '주문 ID:',
+            React.createElement('input', {
+              type: 'text',
+              value: orderId,
+              onChange: (e) => setOrderId(e.target.value),
+            })
+          ),
+          React.createElement('br'),
+          React.createElement('label', null,
+            '상품 ID:',
+            React.createElement('input', {
+              type: 'text',
+              value: productID,
+              onChange: (e) => setProductID(e.target.value),
+            })
+          ),
+          React.createElement('br'),
+          React.createElement('label', null,
+            '수량:',
+            React.createElement('input', {
+              type: 'text',
+              value: quantity,
+              onChange: (e) => setQuantity(e.target.value),
+            })
+          ),
+          React.createElement('br'),
+          React.createElement('button', { type: 'submit' }, '주문 상세 정보 추가')
+        )
+      )
+    );
+  };
 
-  <!-- Target Element for React Component -->
-  <div id="root"></div>
+      // OrderDetailsComponent
+      const OrderDetailsComponent = ({ orderId }) => {
+        const [orderDetails, setOrderDetails] = React.useState(null);
 
-</body>
+        const fetchOrderDetails = async () => {
+          try {
+            const response = await fetch(
+              `http://localhost:3001/order-details/${orderId}`
+            );
+            const data = await response.json();
+            setOrderDetails(data);
+          } catch (error) {
+            console.error("Error fetching order details:", error);
+          }
+        };
+
+        React.useEffect(() => {
+          fetchOrderDetails();
+        }, [orderId]);
+
+        return React.createElement(
+          "div",
+          null,
+          React.createElement("h2", null, "Order Details"),
+          orderDetails
+            ? React.createElement(
+                "div",
+                null,
+                React.createElement(
+                  "p",
+                  null,
+                  `Detail ID: ${orderDetails.DetailID}`
+                ),
+                React.createElement(
+                  "p",
+                  null,
+                  `Product ID: ${orderDetails.ProductID}`
+                ),
+                React.createElement(
+                  "p",
+                  null,
+                  `Quantity: ${orderDetails.Quantity}`
+                )
+              )
+            : React.createElement("p", null, "Loading order details...")
+        );
+      };
+
+      // Render the components to target elements
+      const orderFormTargetElement = document.getElementById("order-form-root");
+      const orderDetailsFormTargetElement = document.getElementById('orderDetailsFormRoot');
+      const orderDetailsTargetElement =
+        document.getElementById("order-details-root");
+
+      ReactDOM.render(
+        React.createElement(OrderFormComponent),
+        orderFormTargetElement
+      );
+
+      ReactDOM.render(React.createElement(OrderDetailsFormComponent), orderDetailsFormTargetElement);
+
+      ReactDOM.render(
+        React.createElement(OrderDetailsComponent, { orderId: 1 }),
+        orderDetailsTargetElement
+      );
+    </script>
+
+    <!-- Target Elements for React Components -->
+    <div id="order-form-root"></div>
+    <div id="orderDetailsFormRoot"></div>
+    <div id="order-details-root"></div>
+  </body>
 </html>
