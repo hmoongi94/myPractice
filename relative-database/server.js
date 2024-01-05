@@ -14,7 +14,14 @@ const orderDetails = [
   // ... 다른 주문 상세 데이터들
 ];
 
+const path = require('path')
+const indexPath = path.join(__dirname, './index.html');
+
 app.use(cors());
+app.get('/', (req, res) => {
+  res.sendFile(path.join(indexPath));
+});
+
 
 app.get('/order-details/:orderId', (req, res) => {
   const orderId = parseInt(req.params.orderId);
